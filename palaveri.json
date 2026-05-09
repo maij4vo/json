@@ -1,18 +1,13 @@
 {
-  "palaveri": {
-    "aihe": "Digi Cafen kehityspalaveri",
-    "paivamaara": "2026-05-10",
-    "kellonaika": "10:00 - 11:30",
-    "paikka": "Digi Cafe, neuvotteluhuone 2",
-    "osallistujat": [
-      "Maija Virtanen",
-      "Matti Meikäläinen",
-      "Anna Korhonen"
-    ],
-    "agenda": [
-      "Uusien tuotteiden ideointi",
-      "Verkkosivujen päivitys",
-      "Asiakaspalautteiden läpikäynti"
-    ]
-  }
-
+  "aihe": "Tiimipalaveri Digi Cafessa",
+  "paikka": "Digi Cafe, kokoushuone A",
+  "alkamisaika": "09:30",
+  "kesto": "1h 30min",
+  "osallistujienLkm": 4,
+  "osallistujat": [
+    "Maija Virtanen",
+    "Matti Meikäläinen",
+    "Anna Korhonen",
+    "Jussi Laine"
+  ]
+}
