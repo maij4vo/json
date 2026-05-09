@@ -22,7 +22,7 @@
 
 <script>
 
-fetch('https://raw.githubusercontent.com/maij4vo/json/refs/heads/main/palaveri')
+fetch('https://jaakkola.github.io/json/digitekniikat.json')
 
 .then(function(response) {
     return response.json();
