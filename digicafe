@@ -16,15 +16,15 @@
   <a href="tyopaikat.html">Työpaikat</a>
 </div>
 
-
+<!-- 🔹 Tänne tulee JSON-data -->
 <div id="vastaus"></div>
 <div id="palaveri"></div>
 
-
+<!-- 🔹 JavaScript -->
 <script>
 
-
-fetch('https://raw.githubusercontent.com/maij4vo/json/refs/heads/main/digicafe')
+// Muunnetaan JSON-muotoon
+fetch('https://raw.githubusercontent.com/maij4vo/JSON/refs/heads/main/digicafe.json')
 
 // Muunnetaan JSON-muotoon
 .then(function (response) {
@@ -36,7 +36,7 @@ fetch('https://raw.githubusercontent.com/maij4vo/json/refs/heads/main/digicafe')
     kerro(responseJson);
 })
 
-// Virhetilanteessa
+// Virhetilanne
 .catch(function (error) {
     document.getElementById("vastaus").innerHTML =
     "<p>Tietoa ei pystytä hakemaan</p>";
@@ -84,3 +84,4 @@ function kerro(data) {
 
 </body>
 </html>
+
