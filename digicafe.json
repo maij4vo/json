@@ -1,87 +1,11 @@
-<!DOCTYPE html>
-<html lang="fi">
-<head>
-  <meta charset="UTF-8">
- 
-
-  <link rel="stylesheet" href="tyylit.css">
-</head>
-
-<body>
-
-<div class="topnav" id="myTopnav">
-  <a href="index.html" class="active">Etusivu</a>
-  <a href="digicafe.html">Digi Cafe</a>
-  <a href="palaveri.html">Palaveri</a>
-  <a href="tyopaikat.html">Työpaikat</a>
-</div>
-
-<!-- 🔹 Tänne tulee JSON-data -->
-<div id="vastaus"></div>
-<div id="palaveri"></div>
-
-<!-- 🔹 JavaScript -->
-<script>
-
-// Muunnetaan JSON-muotoon
-fetch('https://raw.githubusercontent.com/maij4vo/JSON/refs/heads/main/digicafe.json')
-
-// Muunnetaan JSON-muotoon
-.then(function (response) {
-    return response.json();
-})
-
-// Käsitellään data
-.then(function (responseJson) {
-    kerro(responseJson);
-})
-
-// Virhetilanne
-.catch(function (error) {
-    document.getElementById("vastaus").innerHTML =
-    "<p>Tietoa ei pystytä hakemaan</p>";
-});
-
-
-function kerro(data) {
-
-    var teksti = "";
-
-    // Yritys
-    teksti += "<h1>" + data.yritys + "</h1>";
-
-    // Yhteystiedot
-    teksti += "<h3>Yhteystiedot</h3>";
-    teksti += "<p>"
-        + data.yhteystiedot.osoite + "<br>"
-        + data.yhteystiedot.puhelin + "<br>"
-        + data.yhteystiedot.email
-        + "</p>";
-
-    // Tuotteet
-    teksti += "<h3>Tuotteet</h3><ul>";
-    for (var i = 0; i < data.tuotteet.length; i++) {
-        teksti += "<li>" + data.tuotteet[i] + "</li>";
-    }
-    teksti += "</ul>";
-
-    // Henkilökunta
-    teksti += "<h3>Henkilökunta</h3><ul>";
-    for (var i = 0; i < data.henkilokunta.length; i++) {
-        teksti += "<li>"
-            + data.henkilokunta[i].nimi + " - "
-            + data.henkilokunta[i].titteli
-            + "</li>";
-    }
-    teksti += "</ul>";
-
-    document.getElementById("vastaus").innerHTML = teksti;
-}
-
-
-
-  </script>
-
-</body>
-</html>
-
+{"yritys":"Tico Cafe",
+ "yhteystiedot":{"osoite":"Ratapihantie 13, Helsinki",
+ "puhelin":"040 404 4040",
+ "email": "info@ticocafe.com"},
+Oppimistehtävä 3a
+ "tuotteet":["makeat kahvileivät", "suolaiset piiraat", "erikoiskahvit"],
+ "henkilokunta":[{"nimi":"Mikko Mallikas","titteli":"toimitusjohtaja"},
+ {"nimi":"Anna Malli","titteli":"barista"},
+ {"nimi": "Esa Merkki","titteli":"kondiittori"}
+ ]
+ }
