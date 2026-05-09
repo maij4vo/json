@@ -24,7 +24,7 @@
 <script>
 
 
-fetch('https://raw.githubusercontent.com/maij4vo/json/refs/heads/main/index')
+fetch('https://raw.githubusercontent.com/maij4vo/json/refs/heads/main/digicafe')
 
 // Muunnetaan JSON-muotoon
 .then(function (response) {
