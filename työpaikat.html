@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Etusivu</title>
+  <link rel="stylesheet" href="tyylit.css">
+</head>
+
+<body>
+<!-- Navigointipalkki! -->
+<div class="topnav" id="myTopnav">
+  <a href="index.html" class="active">Etusivu</a>
+  <a href="digicafe.html">Digi Cafe</a>
+  <a href="palaveri.html">Palaveri</a>
+  <a href="tyopaikat.html">Työpaikat</a>
+</div>
+
+<!--JSON-data -->
+<div id="vastaus"></div>
+<div id="palaveri"></div>
+<div id="tyopaikat"></div>
+
+<script>
+
+// Haetaan Vantaan työpaikat (esim. tekninen ala)
+fetch('http://gis.vantaa.fi/rest/tyopaikat/v1/Tekninen ala')
+
+.then(function(response) {
+    return response.json();
+})
+
+.then(function(data) {
+    naytaTyopaikat(data);
+})
+
+.catch(function(error) {
+    document.getElementById("tyopaikat").innerHTML =
+    "<p>Tietoa ei pystytä hakemaan</p>";
+});
+
+
+function naytaTyopaikat(data) {
+
+    var teksti = "<h2>Vantaan työpaikat</h2><ul>";
+
+    for (var i = 0; i < data.length; i++) {
+
+        teksti += "<li>";
+
+        // työtehtävä
+        teksti += "<b>" + data[i].tyotehtava + "</b><br>";
+
+        // osoite
+        teksti += data[i].osoite + "<br>";
+
+        // linkki
+        teksti += "<a href='" + data[i].linkki + "' target='_blank'>Lisätiedot</a>";
+
+        teksti += "</li><br>";
+    }
+
+    teksti += "</ul>";
+
+    document.getElementById("tyopaikat").innerHTML = teksti;
+}
+
+</script>
+</body>
+</html>
