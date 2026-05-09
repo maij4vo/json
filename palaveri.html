@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Etusivu</title>
+
+  <link rel="stylesheet" href="tyylit.css">
+</head>
+
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="index.html" class="active">Etusivu</a>
+  <a href="digicafe.html">Digi Cafe</a>
+  <a href="palaveri.html">Palaveri</a>
+  <a href="tyopaikat.html">Työpaikat</a>
+</div>
+
+<!-- JSON-data -->
+<div id="vastaus"></div>
+<div id="palaveri"></div>
+
+<!-- JavaScript -->
+
+<script>
+
+fetch('https://raw.githubusercontent.com/maij4vo/json/main/palaveri.json')
+
+.then(function(response) {
+    return response.json();
+})
+
+.then(function(data) {
+    naytaPalaveri(data);
+})
+
+.catch(function(error) {
+    document.getElementById("palaveri").innerHTML =
+    "<p>Tietoa ei pystytä hakemaan</p>";
+});
+
+function naytaPalaveri(data) {
+
+    var teksti = "";
+
+    teksti += "<h2>" + data.aihe + "</h2>";
+
+    teksti += "<p><b>Paikka:</b> " + data.paikka + "<br>";
+    teksti += "<b>Aika:</b> " + data.alkamisaika + "<br>";
+    teksti += "<b>Kesto:</b> " + data.kesto + "<br>";
+    teksti += "<b>Osallistujia:</b> " + data.osallistujienLkm + "</p>";
+
+    teksti += "<h3>Osallistujat</h3><ul>";
+
+    for (var i = 0; i < data.osallistujat.length; i++) {
+        teksti += "<li>" + data.osallistujat[i] + "</li>";
+    }
+
+    teksti += "</ul>";
+
+    document.getElementById("palaveri").innerHTML = teksti;
+}
+
+</script>
+
+</body>
+</html>
