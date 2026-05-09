@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Etusivu</title>
+
+  <link rel="stylesheet" href="tyylit.css">
+</head>
+
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="index.html" class="active">Etusivu</a>
+  <a href="digicafe.html">Digi Cafe</a>
+  <a href="palaveri.html">Palaveri</a>
+  <a href="tyopaikat.html">Työpaikat</a>
+</div>
+
+
+<div id="vastaus"></div>
+
+<script>
+
+fetch('https://jaakkola.github.io/json/digitekniikat.json')
+
+// Muunnetaan JSON-muotoon
+.then(function (response) {
+    return response.json();
+})
+
+// Käsitellään data
+.then(function (responseJson) {
+    kerro(responseJson);
+})
+
+// Virhetilanne
+.catch(function (error) {
+    document.getElementById("vastaus").innerHTML =
+    "<p>Tietoa ei pystytä hakemaan</p>";
+});
+
+
+function kerro(data) {
+
+    var teksti = "";
+
+    teksti = "<h1>" + data.otsikko + "</h1>";
+
+    // 🔹 TEHTÄVÄ 8 
+    teksti = teksti + "<p>" + data.kuvaus + "</p>";
+
+
+    // kuva
+    teksti = teksti + "<p><img src='" + data.kuva + "' alt='kuva'></p>";
+
+    // objekti ja pistenotaatio
+    teksti = teksti + "<h3>Opintojakso: "
+    + data.opintojakso.nimi + " "
+    + data.opintojakso.tunnus + " "
+    + data.opintojakso.opintopisteet + " op</h3>";
+
+    // tauulukko
+    teksti = teksti + "<ul>"
+    for(var i = 0; i < data.sisalto.length; i++) {
+    teksti = teksti + "<li>" + data.sisalto[i] + "</li>";
+    }
+    teksti = teksti + "</ul>"
+
+    teksti = teksti + "<h3>Linkit</h3>";
+
+   teksti = teksti + "<ul>";
+
+for (var i = 0; i < data.tekniikat.length; i++) {
+    teksti = teksti + "<li>"
+        + data.tekniikat[i].aihe
+        + " - "
+        + "<a href='" + data.tekniikat[i].linkki + "' target='_blank'> "
+        + data.tekniikat[i].linkki
+        + "</a>"
+        + "</li>";
+}
+
+teksti = teksti + "</ul>";
+
+    document.getElementById("vastaus").innerHTML = teksti;
+}
+
+  </script>
+
+</body>
+</html>
